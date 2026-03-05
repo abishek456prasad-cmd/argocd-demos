@@ -1,9 +1,10 @@
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/abishek456prasad-cmd/argocd-demos.git
-    targetRevision: main
-    path: image_updater/chai-app
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- deployment.yaml
+- service.yaml
+
+images:
+- name: mleabishek/chai-devops
+  newTag: v1.0.0
